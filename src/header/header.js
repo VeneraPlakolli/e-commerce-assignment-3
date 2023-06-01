@@ -55,7 +55,7 @@ function onRemoveHamburgerListHandler() {
                 <li><a href="/products" className="item-shop">Shop</a></li>
                 <li><a href="https://roccoandroxie.com/pages/about-us">About Us</a></li>
                 <li><a href="https://roccoandroxie.com/pages/rrstore-locator">Store Locator</a></li>
-                <li><a href="https://roccoandroxie.com/pages/faq">FAQ</a></li>
+                <li><a href="/products/cart">Cart</a></li>
             </ul>
         </div>
     </div>

@@ -3,7 +3,9 @@ import Header from '../header/header';
 import { Link } from 'gatsby';
 import '../style/style.css';
 import { fetchProducts } from './GROQ_queries';
-import noImage from '../images/no-image.png'
+import noImage from '../images/no-image.png';
+import { addCartItem } from '../data/cart';
+
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -16,6 +18,12 @@ const ProductList = () => {
 
     fetchProductsData();
   }, []);
+
+  const addCartItemHandler = async(productId) => {
+    await addCartItem(productId, 1);
+    <Link to="/prodcuts/cart"></Link>
+  }
+
   return (
     <>
     <header>
@@ -34,7 +42,7 @@ const ProductList = () => {
                     (<div className='product_content product_content2'><Link to={`/products/${product._id}`}><img src={noImage}></img></Link></div>)}
                     <div className='product_title'><p>{product.store.title.length > 0 ? product.store.title : ''}</p></div>
                     <div className='product_price'><p>${product.store.priceRange.maxVariantPrice}</p></div>
-                    <button>ADD TO CART</button>
+                    <button onClick={() => addCartItemHandler(product.store?.variants?.[0].store.gid)}>ADD TO CART</button>
                     </div>
                     )
             })}

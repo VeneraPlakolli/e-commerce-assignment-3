@@ -4,8 +4,9 @@ import { getCheckoutId } from "../data/cart";
 import '../style/style.css'
 import { updateCartItem } from "../data/cart";
 import { removeCartItems } from "../data/cart";
+import noImg from '../images/no-image.png'
 
-const Cart = () => {
+const Cart = (props) => {
     
     const [items, setItems] = useState([]);
 
@@ -50,6 +51,8 @@ const Cart = () => {
             
       }
 
+    const totalPrice = items.reduce((accumulator, item) => accumulator + item.variant.price * item.quantity, 0);
+
     console.log(items);
     return (
         <>
@@ -59,7 +62,7 @@ const Cart = () => {
                     <div className="container container-cart">
                         <div className="cart-product">
                             <div className="cart-product_image">
-                             {lineItem.variant.image ? <img src={lineItem.variant.image.src}></img> : <div></div>} 
+                            {lineItem.variant.image ? <img src={lineItem.variant.image.src}></img> : <div className="cart_noImage"><img src={noImg}></img></div>} 
                             </div>
                             <div className="cart-product-data">
                                 <p>{lineItem.title}</p>
@@ -77,7 +80,26 @@ const Cart = () => {
                     </div>
                 </div>
             ))}
-            {/* <div className="total-price"><h3>Total: ${totalPrice.toFixed(2)}</h3></div> */}
+            <div className="container">
+            <div className={`total-price ${props.isOpenedCart ? "total-price-cartdrawer" : ""}`}>
+                <div className="total-price__data">
+                    {props.isOpenedCart ? (
+                        <>
+                        <div className="total-price__data-cartdrawer">
+                        <p className="price-title">SUBTOTAL</p>
+                        <p>${totalPrice.toFixed(2)}</p>
+                        </div>
+                        <button>CHECK OUT</button>
+                        </>
+                    ) : (
+                        <>
+                        <h3>Total</h3>
+                        <h3>${totalPrice.toFixed(2)}</h3>
+                        </>
+                    )}
+                </div>
+            </div></div>
+          
             </div>
         </>
         )

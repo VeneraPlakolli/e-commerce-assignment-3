@@ -162,6 +162,9 @@
 
   .cart-products {
     margin-top: 50px;
+    &:last-child {
+      margin-bottom: 100px;
+    }
   }
  .cart-product {
     display: flex;
@@ -172,6 +175,9 @@
   .cart-product_image {
     width: 15%;
     height: 150px;
+    & div {
+     
+    }
     & img {
         width: 100%;
         height: 100%;
@@ -200,13 +206,25 @@
   }
   .cart-drawer {
     width: 100%;
-    padding: 10px;
+    height: 100%;
+    padding: 12px;
     background-color: white;
+    overflow-y: auto;
   }
   .cart-drawer_title {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    & button {
+      background-color: transparent;
+      border: none;
+      font-size: 16px;
+    }
+  }
+  .cart_noImage {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(153, 117, 187, 1);
   }
   .cart-drawer .cart-product_image {
     width: 25%;
@@ -229,10 +247,12 @@
     position: relative;
   }
   .cart-drawer-pdp {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 30%;
+    height: 100vh;
+    overflow-y: auto;
     z-index: 1000;
   }
   .overlay-pdp {
@@ -241,16 +261,60 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: rgb(97, 95, 95);
     opacity: 0.5;
-    z-index: 1; 
+    z-index: 1;
   }
   .total-price {
-    position: relative;
-    height: 30px;
-    & h3 {
-      position: absolute;
-      right: 80px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    & .total-price__data {
+      width: 30%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
+
   }
+
+  .total-price-cartdrawer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+     padding-left: 14px; 
+    padding-right: 15px; 
+    background-color: white;
+    border-top: 1px solid rgb(201, 198, 198);
+    & .total-price__data {
+      width: 100%;
+      flex-direction: column;
+      & button {
+        border: none;
+        background-color: black;
+        width: 100%;
+        padding: 13px;
+        color: white;
+        margin-bottom: 15px;
+        letter-spacing: 0.4em;
+      }
+      & .total-price__data-cartdrawer {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        & .price-title {
+          letter-spacing: 0.08em;
+        }
+        & p {
+          font-size: 15px;
+        }
+      }
+    }
+}
  

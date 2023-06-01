@@ -15,7 +15,7 @@ const Index = () => {
     </div>
     </header>
     <div className='container'>
-      <Link to="/products"><h3>Products</h3></Link>
+      <Link to="/products"><h1>Products</h1></Link>
     </div>
     </>
   );

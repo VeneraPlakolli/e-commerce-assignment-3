@@ -5,7 +5,11 @@ export const fetchProducts = async () => {
     const query = groq`*[_type == "product"] {
     _id,
     store {
-      gid,
+      variants[]-> {
+        store {
+          gid
+        }
+      },
       title,
       previewImageUrl,
       priceRange {
@@ -28,7 +32,6 @@ export const fetchProducts = async () => {
     const query = groq`*[_type == "product" && _id == $productId] {
         _id,
         store {
-        gid,
         variants[]-> {
           store {
             gid

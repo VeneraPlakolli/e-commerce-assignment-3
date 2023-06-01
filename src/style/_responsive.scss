@@ -145,9 +145,10 @@
     }
     .product_mainImage {
         margin-left: 10%;
+        width: 60%;
         & img {
-            width: 75%;
-            height: 50%;
+            width: 100%;
+            height: 100%;
         }
     }
   
@@ -181,8 +182,10 @@
     .cart-drawer .product-cart-removeButton {
         padding: 0 6px;
     }
-    .total-price h3 {
-        right: 0px;
+    .total-price .total-price__data {
+        width: 100%;
+        right: 0;
     }
+   
    
 }

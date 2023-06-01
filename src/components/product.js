@@ -3,6 +3,7 @@ import '../style/style.css'
 import Header from "../header/header";
 import { fetchProductById } from "./GROQ_queries";
 import { addCartItem } from "../data/cart";
+import CartDrawer from "./CartDrawer";
 
 const Product = ({ productId }) => {
     const[product, setProduct] = useState([]);
@@ -15,7 +16,7 @@ const Product = ({ productId }) => {
             setProduct(fetchProduct);
         }
         fetchProductData()
-    }, [])  // [productId]
+    }, [])
 
     const increaseQuantityValueHandler = () => {
         setQuantityValue(quantityValue + 1);
@@ -36,6 +37,7 @@ const Product = ({ productId }) => {
     const addCartItemHandler = async() => {
         await addCartItem(product.store?.variants?.[0].store.gid, quantityValue);
         setQuantityValue(1)
+        setOpenCart(true)
     }
 
     return (
@@ -49,7 +51,7 @@ const Product = ({ productId }) => {
 
           {isOpenedCart && <>
           <div className='overlay-pdp'></div>
-          {/* <div className='cart-drawer-pdp'><CartDrawer onSetCloseCartEvent={onSetCloseCartHandler}></CartDrawer></div> */}
+          <div className='cart-drawer-pdp'><CartDrawer openedCart={isOpenedCart} onSetCloseCartEvent={onSetCloseCartHandler}></CartDrawer></div>
           </>}
       
           <div className='container'>

@@ -25,7 +25,6 @@ export const addCartItem = async (variantId, quantity) => {
     ];
 
     const updatedCheckout = await shopifyBuy.checkout.addLineItems(await getCheckoutId(), lineItem);
-    alert('Successfully added')
     return updatedCheckout;
 };
 
