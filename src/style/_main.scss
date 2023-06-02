@@ -5,6 +5,9 @@
     text-decoration: none;
     color: rgb(110, 108, 108);
 }
+a {
+  color: white;
+}
 .singleProduct img {
     width: 200px;
     height: 200px;
@@ -16,7 +19,6 @@
 }
 .products {
     margin-top: 50px;
-    
     display: grid;
     gap: 22px;
     row-gap: 45px;
@@ -81,7 +83,6 @@
     }
 }
 .pdpProduct {
-    // border: 1px solid red;
     display: flex;
     justify-content: space-between;
 }
@@ -94,6 +95,9 @@
     & p {
         letter-spacing: 0.3em;
         font-size: 11px;
+    }
+    & h3, h2 {
+      color: rgb(60 58 58);
     }
 }
 .product_images {
@@ -112,8 +116,11 @@
         height: 350px;
     }
 }
+.mainImage-container {
+  background-color: rgb(153, 117, 187, 1);
+  
+}
 .product-info {
-    // text-align: left;
     & button {
         width: 100%;
         font-size: 10px;
@@ -142,6 +149,11 @@
     justify-content: center;
     width: 17px;
     height: 100%;
+    &:hover {
+      button {
+        font-weight: bold;
+      }
+    }
   }
   .decreaseQuantityButton {
     border-right: 1px solid darkgrey;
@@ -175,9 +187,6 @@
   .cart-product_image {
     width: 15%;
     height: 150px;
-    & div {
-     
-    }
     & img {
         width: 100%;
         height: 100%;
@@ -215,10 +224,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    & h3 {
+      color: black;
+    }
     & button {
       background-color: transparent;
       border: none;
       font-size: 16px;
+      color: black;
+      &:hover {
+        background-color: black;
+        color: white;
+      }
     }
   }
   .cart_noImage {
@@ -226,6 +243,7 @@
     height: 100%;
     background-color: rgb(153, 117, 187, 1);
   }
+
   .cart-drawer .cart-product_image {
     width: 25%;
     height: 25%;
@@ -287,7 +305,7 @@
     right: 0;
     width: 100%;
     height: auto;
-     padding-left: 14px; 
+    padding-left: 14px; 
     padding-right: 15px; 
     background-color: white;
     border-top: 1px solid rgb(201, 198, 198);
@@ -299,7 +317,6 @@
         background-color: black;
         width: 100%;
         padding: 13px;
-        color: white;
         margin-bottom: 15px;
         letter-spacing: 0.4em;
       }

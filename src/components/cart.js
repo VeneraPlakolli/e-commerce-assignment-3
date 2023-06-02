@@ -5,6 +5,7 @@ import '../style/style.css'
 import { updateCartItem } from "../data/cart";
 import { removeCartItems } from "../data/cart";
 import noImg from '../images/no-image.png'
+import { Link } from "gatsby";
 
 const Cart = (props) => {
     
@@ -89,7 +90,7 @@ const Cart = (props) => {
                         <p className="price-title">SUBTOTAL</p>
                         <p>${totalPrice.toFixed(2)}</p>
                         </div>
-                        <button>CHECK OUT</button>
+                        <button><Link to="https://help.shopify.com/en/manual/checkout-settings">CHECK OUT</Link></button>
                         </>
                     ) : (
                         <>

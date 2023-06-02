@@ -186,6 +186,10 @@ header a {
   color: rgb(110, 108, 108);
 }
 
+a {
+  color: white;
+}
+
 .singleProduct img {
   width: 200px;
   height: 200px;
@@ -281,6 +285,9 @@ header a {
   letter-spacing: 0.3em;
   font-size: 11px;
 }
+.pdpProduct_data h3, .pdpProduct_data h2 {
+  color: rgb(60, 58, 58);
+}
 
 .product_images {
   display: grid;
@@ -297,6 +304,10 @@ header a {
 .product_mainImage img {
   width: 350px;
   height: 350px;
+}
+
+.mainImage-container {
+  background-color: rgb(153, 117, 187);
 }
 
 .product-info button {
@@ -328,6 +339,9 @@ header a {
   justify-content: center;
   width: 17px;
   height: 100%;
+}
+.quantityButton:hover button {
+  font-weight: bold;
 }
 
 .decreaseQuantityButton {
@@ -412,10 +426,18 @@ hr {
   align-items: center;
   justify-content: space-between;
 }
+.cart-drawer_title h3 {
+  color: black;
+}
 .cart-drawer_title button {
   background-color: transparent;
   border: none;
   font-size: 16px;
+  color: black;
+}
+.cart-drawer_title button:hover {
+  background-color: black;
+  color: white;
 }
 
 .cart_noImage {
@@ -506,7 +528,6 @@ hr {
   background-color: black;
   width: 100%;
   padding: 13px;
-  color: white;
   margin-bottom: 15px;
   letter-spacing: 0.4em;
 }
@@ -548,6 +569,11 @@ hr {
   }
   .pdpProduct_data {
     margin-top: 40px;
+    width: 45%;
+    margin-right: 12%;
+  }
+  .product_mainImage {
+    width: 40%;
   }
   * {
     line-height: 1;
@@ -624,17 +650,18 @@ hr {
     text-align: center;
   }
   .products_product .product_content {
-    height: 67%;
-  }
-  .products_product .product_content2 {
-    width: 80%;
-    margin-left: 10%;
+    height: 60%;
+    width: 65%;
+    margin-left: 18%;
   }
   .products_product button {
     width: 47%;
   }
   .products_product .product_price {
     width: 100%;
+  }
+  .products_product .product_title {
+    height: 30px;
   }
   .pdpProduct {
     display: block;
@@ -650,19 +677,20 @@ hr {
     width: 100%;
   }
   .pdpProduct_data {
-    width: 50%;
+    width: 54%;
     margin-top: 10%;
     margin-left: 22%;
   }
   .pdpProduct_data hr {
     width: 100%;
   }
-  .pdpProduct_data h2 {
-    font-size: 20px;
+  .pdpProduct_data h2, .pdpProduct_data h3 {
+    font-size: 18px;
   }
   .product_mainImage {
-    margin-left: 10%;
+    margin-left: 15%;
     width: 60%;
+    height: 80%;
   }
   .product_mainImage img {
     width: 100%;
@@ -673,7 +701,7 @@ hr {
     height: 100%;
   }
   .cart-product-data {
-    width: 48%;
+    width: 38%;
   }
   .cart-product-price {
     width: 16%;

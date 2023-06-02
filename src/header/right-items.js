@@ -8,7 +8,7 @@ const RightItems = (props) => {
     return (
         <div className="right-icons">
         <div className="shop-cart-responsive">
-            <a href="#" className="icons cart-icon-responsive" onClick={props.onOpenedCartEvent}>
+            <a href="/products/cart" className="icons cart-icon-responsive">
                 <img src={cartImg} alt="" />
             </a>
         </div>

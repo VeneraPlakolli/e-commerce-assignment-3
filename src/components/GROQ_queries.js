@@ -7,7 +7,7 @@ export const fetchProducts = async () => {
     store {
       variants[]-> {
         store {
-          gid
+          ...
         }
       },
       title,
@@ -34,7 +34,7 @@ export const fetchProducts = async () => {
         store {
         variants[]-> {
           store {
-            gid
+            ...
           }
         },
           id,

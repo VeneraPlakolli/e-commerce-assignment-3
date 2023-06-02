@@ -4,20 +4,57 @@ import Header from "../header/header";
 import { fetchProductById } from "./GROQ_queries";
 import { addCartItem } from "../data/cart";
 import CartDrawer from "./CartDrawer";
+import noImg from '../images/no-image.png'
 
 const Product = ({ productId }) => {
     const[product, setProduct] = useState([]);
     const[quantityValue, setQuantityValue] = useState(1);
-    const [isOpenedCart, setOpenCart] = useState(false);
+    const[isOpenedCart, setOpenCart] = useState(false);
+    const[offsetSlider, setOffsetSlider] = useState(0);
+    const[imageStoreLength, setImageStoreLength] = useState(false);
 
     useEffect(() => {
         const fetchProductData = async () => {
             const fetchProduct = await fetchProductById(productId);
             setProduct(fetchProduct);
+            setOffsetSlider(0); 
         }
         fetchProductData()
+        
     }, [])
 
+    useEffect(() => {
+      imageLengthHandler();
+    }, [product]);
+
+    function imageLengthHandler(){
+      product.store?.variants?.map(variant => {
+        variant.store.previewImageUrl?.length > 0 ? setImageStoreLength(true) : setImageStoreLength(false)
+      })
+    }
+
+    const handleNext = () => {
+      if (offsetSlider < product.store?.variants.length - 1) {
+        setOffsetSlider((prevOffset) => prevOffset + 1);
+      } else {
+        setOffsetSlider(0);
+      }
+      
+    };
+    
+    const handlePrev = () => {
+      if (offsetSlider > 0) {
+        setOffsetSlider((prevOffset) => prevOffset - 1);
+      } else {
+        setOffsetSlider(product.store?.variants.length - 1);
+      }
+    };
+
+    const displayImages = product.store?.variants ? [
+      ...product.store?.variants.slice(offsetSlider),
+      ...product.store?.variants.slice(0, offsetSlider),
+    ].slice(0, 2)
+  : [];
     const increaseQuantityValueHandler = () => {
         setQuantityValue(quantityValue + 1);
     }
@@ -36,8 +73,8 @@ const Product = ({ productId }) => {
 
     const addCartItemHandler = async() => {
         await addCartItem(product.store?.variants?.[0].store.gid, quantityValue);
-        setQuantityValue(1)
-        setOpenCart(true)
+        setQuantityValue(1);
+        onSetOpenCartHandler();
     }
 
     return (
@@ -45,7 +82,7 @@ const Product = ({ productId }) => {
         <div className='product-content'>
           <header>
             <div className='container'>
-              <Header onSetOpenCartEvent={onSetOpenCartHandler}></Header>
+              <Header></Header>
             </div>
           </header>
 
@@ -55,16 +92,30 @@ const Product = ({ productId }) => {
           </>}
       
           <div className='container'>
-        
-            <div key={product._id} className='pdpProduct'>
+            <div key={product._id} className={`pdpProduct ${imageStoreLength ? 'pdpProduct2' : ''}`}>
               <div className='pdpProduct_images'>
                 <div className='product_images'>
+                  {displayImages.map(variant => ( 
+                    variant.store.previewImageUrl ? <div key={variant.store.id}><img src={variant.store.previewImageUrl}></img></div> : ''
+                  ))
+                  }
+                    {imageStoreLength && 
+                    <div className='prevNextButtons'>
+                    <button onClick={handlePrev}>{`<`}</button>
+                    <button onClick={handleNext}>{`>`}</button>
+                  </div>}
                 </div>
+
+
                 <div className='product_mainImage'>
                   {product.store && product.store.previewImageUrl ? (
                     <img src={product.store.previewImageUrl}></img>
                   ) : (
-                    ''
+                    <>
+                    <div className="mainImage-container">
+                      <img src={noImg}></img>
+                    </div>
+                    </>
                   )}
                 </div>
             
