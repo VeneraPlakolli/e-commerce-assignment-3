@@ -1,4 +1,4 @@
-import ShopifyBuy from '@shopify/buy-button-js';
+import ShopifyBuy from 'shopify-buy';
 import sanityClient from '@sanity/client';
 
 const client = sanityClient({
