@@ -566,11 +566,12 @@ hr {
   }
   .pdpProduct_images {
     width: 100%;
+    margin-left: 13%;
   }
   .pdpProduct_data {
     margin-top: 40px;
     width: 45%;
-    margin-right: 12%;
+    margin-left: 25%;
   }
   .product_mainImage {
     width: 40%;
