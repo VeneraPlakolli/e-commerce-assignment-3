@@ -56,6 +56,10 @@ const Cart = (props) => {
 
     return (
         <>
+        {items == '' && 
+
+        <div className="cart-noItems"><h2>No items in Cart!</h2></div>
+        }
           <div className="cart-products">
             {items.map((lineItem) => (
                 <div key={lineItem.id}>

@@ -544,6 +544,12 @@ hr {
   font-size: 15px;
 }
 
+.cart-noItems {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 25px;
+}
+
 @media (min-width: 768px) and (max-width: 1024px) {
   .header-item--left {
     visibility: hidden;
