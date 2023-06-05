@@ -10,6 +10,6 @@ const client = sanityClient({
 export { client }
 
 export const shopifyBuy = ShopifyBuy.buildClient({
-  domain: process.env.ACCESS_DOMAIN,
-  storefrontAccessToken: process.env.STOREFRONT_ACCESS_TOKEN,
+  domain: 'venera-sgd.myshopify.com',
+  storefrontAccessToken: 'f36ad3eca2e9d60ed3cb36c65c59d835',
 });
