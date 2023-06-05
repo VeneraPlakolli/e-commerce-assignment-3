@@ -43,7 +43,6 @@ const ProductList = () => {
                     <div className='product_title'><p>{product.store.title.length > 0 ? product.store.title : ''}</p></div>
                     <div className='product_price'><p>${product.store.priceRange.maxVariantPrice}</p></div>
                     <button onClick={() => addCartItemHandler(product.store?.variants?.[0].store.gid)}>ADD TO CART</button>
-                    {/* {console.log(product.store?.variants?.length)} */}
                     </div>
                     )
             })}
