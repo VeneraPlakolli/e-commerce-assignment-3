@@ -54,7 +54,6 @@ const Cart = (props) => {
 
     const totalPrice = items.reduce((accumulator, item) => accumulator + item.variant.price * item.quantity, 0);
 
-    console.log(items);
     return (
         <>
           <div className="cart-products">

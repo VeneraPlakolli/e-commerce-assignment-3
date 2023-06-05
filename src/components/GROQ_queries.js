@@ -21,7 +21,6 @@ export const fetchProducts = async () => {
 
     try {
       const response = await client.fetch(query);
-      console.log(response);
       return response;
     } catch (error) {
       console.error('Error fetching products:', error);
@@ -48,7 +47,6 @@ export const fetchProducts = async () => {
 
     try {
       const response = await client.fetch(query, { productId });
-      console.log(response);
       return response[0];
     } catch (error) {
       console.error('Error fetching products:', error);
