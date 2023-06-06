@@ -87,6 +87,7 @@ const Product = ({ productId }) => {
         await addCartItem(product.store?.variants?.[0].store.gid, quantityValue);
         setQuantityValue(1);
         onSetOpenCartHandler();
+        console.log('domain', process.env.ACCESS_DOMAIN);
     }
 
     function loadingHandler() {
