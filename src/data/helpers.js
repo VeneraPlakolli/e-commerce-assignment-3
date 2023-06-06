@@ -10,6 +10,6 @@ const client = sanityClient({
 export { client }
 
 export const shopifyBuy = ShopifyBuy.buildClient({
-  domain: process.env.ACCESS_DOMAIN,
-  storefrontAccessToken: process.env.STOREFRONT_ACCESS_TOKEN,
+  domain: process.env.GATSBY_ACCESS_DOMAIN,
+  storefrontAccessToken: process.env.GATSBY_STOREFRONT_ACCESS_TOKEN,
 });
