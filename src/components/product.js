@@ -12,6 +12,9 @@ const Product = ({ productId }) => {
     const[isOpenedCart, setOpenCart] = useState(false);
     const[offsetSlider, setOffsetSlider] = useState(0);
     const[imageStoreLength, setImageStoreLength] = useState(false);
+    const[isOpeningCart, setIsOpeningCart] = useState(false);
+    const[isLoading, setLoading] = useState('ADD TO CART');
+    const[addClassName, setClassName] = useState('');
 
     useEffect(() => {
         const fetchProductData = async () => {
@@ -26,6 +29,13 @@ const Product = ({ productId }) => {
     useEffect(() => {
       imageLengthHandler();
     }, [product]);
+
+    function onSetClassHandler() {
+      setClassName('shop-list-visible');
+    }
+    function onRemoveClassHandler() {
+      setClassName('');
+    }
 
     function imageLengthHandler(){
       product.store?.variants?.map(variant => {
@@ -68,7 +78,9 @@ const Product = ({ productId }) => {
       setOpenCart(true);
     }
     const onSetCloseCartHandler = () => {
-      setOpenCart(false)
+      setOpenCart(false);
+      setIsOpeningCart(false);
+      setLoading('ADD TO CART');
     }
 
     const addCartItemHandler = async() => {
@@ -77,20 +89,29 @@ const Product = ({ productId }) => {
         onSetOpenCartHandler();
     }
 
+    function loadingHandler() {
+      setIsOpeningCart(true);
+      setLoading('LOADING...');
+    }
+
     return (
         <> 
-        <div className='product-content'>
+        <div className='product-content' onClick={onRemoveClassHandler}>
           <header>
             <div className='container'>
-              <Header></Header>
+              <Header onClassPropertie={addClassName} onSetClassEvent={onSetClassHandler}></Header>
             </div>
           </header>
 
           {isOpenedCart && <>
-          <div className='overlay-pdp'></div>
-          <div className='cart-drawer-pdp'><CartDrawer openedCart={isOpenedCart} onSetCloseCartEvent={onSetCloseCartHandler}></CartDrawer></div>
+          <div className='overlay-pdp' onClick={onSetCloseCartHandler}></div>
+          <div className='cart-drawer-pdp'><CartDrawer 
+            openedCart={isOpenedCart} 
+            onSetCloseCartEvent={onSetCloseCartHandler}
+            onSetLoadingEvent = {isOpeningCart}
+            ></CartDrawer></div>
           </>}
-      
+           
           <div className='container'>
             <div key={product._id} className={`pdpProduct ${imageStoreLength ? 'pdpProduct2' : ''}`}>
               <div className='pdpProduct_images'>
@@ -132,7 +153,10 @@ const Product = ({ productId }) => {
                                     <div className="increaseButton quantityButton" onClick={increaseQuantityValueHandler}><button>+</button></div>
                 </div>
                 <div className='products_product product-info'>
-                  <button onClick={addCartItemHandler}>ADD TO CART</button>
+                  <button onClick={() => {addCartItemHandler(); loadingHandler()}}
+                  className='atc-button' disabled={isOpeningCart}>
+                  {isLoading}
+                  </button>
                 </div>
               </div>
             </div>

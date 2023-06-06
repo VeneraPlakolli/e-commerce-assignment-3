@@ -14,7 +14,7 @@ const Hamburger = (props) => {
                 </a>
                 
                 <div className="header-item--left">
-                      <a href="/products" className="item-shop" onMouseEnter={props.onSetClassEvent} onMouseLeave={props.onRemoveClassEvent}>Shop</a>
+                      <a href="/products" className="item-shop" onMouseEnter={props.onSetClassEvent}>Shop</a>
                       <a href="https://roccoandroxie.com/pages/about-us">About Us</a>
                       <a href="https://roccoandroxie.com/pages/rrstore-locator">Store Locator</a>
                       <a href="https://roccoandroxie.com/pages/faq">FAQ</a>

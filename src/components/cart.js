@@ -8,7 +8,6 @@ import noImg from '../images/no-image.png'
 import { Link } from "gatsby";
 
 const Cart = (props) => {
-    
     const [items, setItems] = useState([]);
 
     useEffect(() => {

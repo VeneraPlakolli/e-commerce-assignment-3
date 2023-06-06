@@ -493,6 +493,20 @@ hr {
   z-index: 1;
 }
 
+.overlay-pdp2 {
+  opacity: 0.05;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 40%;
+  left: 45%;
+  z-index: 1000;
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+}
+
 .total-price {
   width: 100%;
   height: 50px;
@@ -548,6 +562,15 @@ hr {
   text-align: center;
   margin-top: 50px;
   font-size: 25px;
+}
+
+.atc-button:hover {
+  background-color: rgb(11, 90, 163);
+  transition: background-color 0.4s ease;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
