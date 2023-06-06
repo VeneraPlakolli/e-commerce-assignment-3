@@ -43,13 +43,18 @@ const Cart = (props) => {
         onUpdateCartHandler(id, newQuantityValue);
     } 
   
-      function decreaseQuantityValueHandler(id, quantity) {
-        if(quantity > 1){
-          let newQuantityValue = quantity - 1;
+    async function decreaseQuantityValueHandler(id, quantity) {
+        let newQuantityValue = quantity - 1;
+        if (newQuantityValue === 0) {
+          await removeCartItems(id);
+          const updatedItems = items.filter((item) => item.id !== id);
+          setItems(updatedItems);
+        }else {
           onUpdateCartHandler(id, newQuantityValue);
         }
-            
-      }
+        
+    }
+      
 
     const totalPrice = items.reduce((accumulator, item) => accumulator + item.variant.price * item.quantity, 0);
 

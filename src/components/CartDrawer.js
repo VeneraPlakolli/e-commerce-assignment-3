@@ -4,9 +4,6 @@ import '../style/style.css'
 
 const CartDrawer = (props) => {
 
-    // function onClosingCartDrawer() {
-    //     props.onSetLoadingEvent == false;
-    // }
     return <div className="cart-drawer">
         <div className="cart-drawer_title">
             <h3>Cart</h3>

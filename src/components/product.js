@@ -13,7 +13,7 @@ const Product = ({ productId }) => {
     const[offsetSlider, setOffsetSlider] = useState(0);
     const[imageStoreLength, setImageStoreLength] = useState(false);
     const[isOpeningCart, setIsOpeningCart] = useState(false);
-    const[isLoading, setLoading] = useState('ADD TO CART');
+    const[isAdding, setIsAdding] = useState('ADD TO CART');
     const[addClassName, setClassName] = useState('');
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const Product = ({ productId }) => {
       ...product.store?.variants.slice(offsetSlider),
       ...product.store?.variants.slice(0, offsetSlider),
     ].slice(0, 2)
-  : [];
+    : [];
     const increaseQuantityValueHandler = () => {
         setQuantityValue(quantityValue + 1);
     }
@@ -80,19 +80,18 @@ const Product = ({ productId }) => {
     const onSetCloseCartHandler = () => {
       setOpenCart(false);
       setIsOpeningCart(false);
-      setLoading('ADD TO CART');
+      setIsAdding('ADD TO CART');
     }
 
     const addCartItemHandler = async() => {
         await addCartItem(product.store?.variants?.[0].store.gid, quantityValue);
         setQuantityValue(1);
         onSetOpenCartHandler();
-        console.log('domain', process.env.ACCESS_DOMAIN);
     }
 
     function loadingHandler() {
       setIsOpeningCart(true);
-      setLoading('LOADING...');
+      setIsAdding('ADDING...');
     }
 
     return (
@@ -156,7 +155,7 @@ const Product = ({ productId }) => {
                 <div className='products_product product-info'>
                   <button onClick={() => {addCartItemHandler(); loadingHandler()}}
                   className='atc-button' disabled={isOpeningCart}>
-                  {isLoading}
+                  {isAdding}
                   </button>
                 </div>
               </div>

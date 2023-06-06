@@ -5,13 +5,15 @@ import '../style/style.css';
 import { fetchProducts } from './GROQ_queries';
 import noImage from '../images/no-image.png';
 import { addCartItem } from '../data/cart';
+import CartDrawer from './CartDrawer';
 
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
-  const [isLoading, setLoading] = useState(false);
   const [addClassName, setClassName] = useState('');
-  const [isClickedButton, setClickedButton] = useState(false);
+  const [isClickedButton, setClickedButton] = useState('');
+  const [isOpenedCart, setOpenCart] = useState(false);
+  const [isOpeningCart, setIsOpeningCart] = useState(false);
 
   useEffect(() => {
     const fetchProductsData = async () => {
@@ -24,8 +26,8 @@ const ProductList = () => {
 
   const addCartItemHandler = async(productId) => {
     await addCartItem(productId, 1);
-    window.location.href = "/products/cart";
-    setLoading(true);
+    onSetOpenCartHandler();
+    // setLoading(true);
   }
 
   function onSetClassHandler() {
@@ -34,9 +36,20 @@ const ProductList = () => {
   function onRemoveClassHandler() {
     setClassName('');
   }
-  function clickAddButtonHandler() {
-    setClickedButton(true);
+  function clickAddButtonHandler(productId) {
+    setIsOpeningCart(true)
+    setClickedButton({ productId, buttonText: 'ADDING...' });
   }
+
+  const onSetOpenCartHandler = () => {
+    setOpenCart(true);
+  }
+  const onSetCloseCartHandler = () => {
+    setOpenCart(false);
+    setIsOpeningCart(false);
+    setClickedButton('ADD TO CART')
+  }
+
 
   return (
     <div onClick={onRemoveClassHandler}>
@@ -45,28 +58,31 @@ const ProductList = () => {
             <Header onClassPropertie={addClassName} onSetClassEvent={onSetClassHandler}></Header>
         </div>
     </header>
-   
+    {isOpenedCart && <>
+          <div className='overlay-pdp' onClick={onSetCloseCartHandler}></div>
+          <div className='cart-drawer-pdp'><CartDrawer 
+            openedCart={isOpenedCart} 
+            onSetCloseCartEvent={onSetCloseCartHandler}
+            onSetLoadingEvent = {isOpeningCart}
+            ></CartDrawer></div>
+    </>}
     <div className="container">
         <div className="products"> 
            {products.map((product) => {
+             const isClicked = isClickedButton && isClickedButton.productId === product._id;
+             const buttonText = isClicked ? isClickedButton.buttonText : 'ADD TO CART';
             return (
-                  <>
-                  {isLoading && <>
-                    <div className='overlay-pdp overlay-pdp2'></div>
-                    <div className='loading-overlay'>Loading...</div>
-                  </>}
-                    
-                    <div key={product._id} className="products_product" onClick={onRemoveClassHandler}>
-                    {product.store.previewImageUrl && product.store.previewImageUrl.length > 0 ? (
-                    <div className='product_content'><Link to={`/products/${product._id}`}><img src={product.store.previewImageUrl}></img></Link></div>) : 
-                    (<div className='product_content product_content2'><Link to={`/products/${product._id}`}><img src={noImage}></img></Link></div>)}
-                    <div className='product_title'><p>{product.store.title.length > 0 ? product.store.title : ''}</p></div>
-                    <div className='product_price'><p>${product.store.priceRange.maxVariantPrice}</p></div>
-                    <button onClick={() => {addCartItemHandler(product.store?.variants?.[0].store.gid); clickAddButtonHandler()}} 
-                      className='atc-button' disabled={isClickedButton}>ADD TO CART</button>
-                    </div>
-                    </>
-                    )
+              <div key={product._id} className="products_product" onClick={onRemoveClassHandler}>
+              {product.store.previewImageUrl && product.store.previewImageUrl.length > 0 ? (
+              <div className='product_content'><Link to={`/products/${product._id}`}><img src={product.store.previewImageUrl}></img></Link></div>
+              ) : (
+              <div className='product_content product_content2'><Link to={`/products/${product._id}`}><img src={noImage}></img></Link></div>)}
+              <div className='product_title'><p>{product.store.title.length > 0 ? product.store.title : ''}</p></div>
+              <div className='product_price'><p>${product.store.priceRange.maxVariantPrice}</p></div>
+              <button onClick={() => {addCartItemHandler(product.store?.variants?.[0].store.gid); clickAddButtonHandler(product._id)}} 
+              className='atc-button' disabled={isOpeningCart}>{buttonText}</button>
+              </div>
+            )
             })}
            
     </div>
