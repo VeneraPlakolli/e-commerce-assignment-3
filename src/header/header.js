@@ -15,13 +15,13 @@ function onRemoveHamburgerListHandler() {
 }
 
   return (
-    <div className="header-container">
+    <div className="header-container" onClick={onRemoveHamburgerListHandler}>
         <nav>
             <div className="header-item">
                 <Hamburger onSetClassEvent={props.onSetClassEvent} 
                            onSetEnteredHamburgerEvent={onSetEnteredHamburgerHandler}>
                 </Hamburger>
-                <div className="header-item--logo" onClick={onRemoveHamburgerListHandler}>
+                <div className="header-item--logo">
                     <a className="site-header__logo-link">
                     <img src={namelogoblue} alt=""/>
                     </a>

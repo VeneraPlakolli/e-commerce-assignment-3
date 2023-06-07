@@ -27,7 +27,6 @@ const ProductList = () => {
   const addCartItemHandler = async(productId) => {
     await addCartItem(productId, 1);
     onSetOpenCartHandler();
-    // setLoading(true);
   }
 
   function onSetClassHandler() {

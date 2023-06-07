@@ -615,6 +615,9 @@ button:hover {
   .cart-products {
     padding: 0 10px;
   }
+  .cart-drawer-pdp {
+    width: 35%;
+  }
   .right-icons {
     width: 40%;
   }
@@ -748,7 +751,7 @@ button:hover {
     height: 100%;
   }
   .cart-drawer-pdp {
-    width: 65%;
+    width: 68%;
   }
   .cart-drawer .quantity-box-cart {
     width: 60%;
